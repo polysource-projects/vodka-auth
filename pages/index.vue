@@ -6,14 +6,18 @@
 		/></a>
 	</p>
 	<p class="back-text">
-		Hey, {{ email }}! Here by mistake?
+		Here by mistake?
 		<button class="back" @click="back">
 			<Icon class="icon" name="material-symbols:arrow-back" /> <span> Go back. </span>
 		</button>
 	</p>
-	<button class="button" @click="logout">
+	<button v-if="loggedIn" class="button" @click="logout">
 		<Icon class="icon" name="material-symbols:logout" />
-		Log out of Vodka
+		Log out ({{ email }})
+	</button>
+	<button v-else class="button" @click="login">
+		<Icon class="icon" name="material-symbols:login" />
+		Log in
 	</button>
 </template>
 
@@ -44,11 +48,10 @@
 import { Vodka } from "@/api";
 
 const { data } = await Vodka.getData();
-if (!data.value) {
-	navigateTo("/login");
-}
 
-const email = (data.value as any).user.email;
+const loggedIn = ref(!!data.value);
+
+const email = (data.value as any)?.user?.email as string | undefined;
 
 const router = useRouter();
 
@@ -56,8 +59,12 @@ function back() {
 	router.back();
 }
 
+function login() {
+	navigateTo("/login");
+}
+
 async function logout() {
 	await Vodka.logout();
-	navigateTo("/login");
+	loggedIn.value = false;
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
-	<h2>hi, {{ mail }} (<button class="logout-link" @click="logout">logout</button>)</h2>
-	<p>{{ website }} wants to get to know you ;)</p>
-	<button class="button red" @click="accept">sell my data :)</button>
-	<button class="button" @click="deny">sell plasma instead &gt;:(</button>
+	<h2>Hi, {{ mail }}! (<button class="logout-link" @click="logout">logout</button>)</h2>
+	<span>{{ website }} would like to verify your academic status.</span>
+	<button class="button red" @click="accept">Accept</button>
+	<button class="button" @click="deny">Deny</button>
 </template>
 <script setup lang="ts">
 import { Vodka } from "~/api";
@@ -56,5 +56,9 @@ button.logout-link {
 	cursor: pointer;
 	padding: 0;
 	font-size: 1rem;
+}
+
+span {
+	margin-top: 0.5rem;
 }
 </style>
