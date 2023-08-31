@@ -54,7 +54,7 @@ main.content > .items {
 	margin-top: 1rem;
 	padding: 1rem;
 	border: 1px solid #e6e6e6;
-	height: 3.5rem;
+	min-height: 3.5rem;
 	width: 100%;
 }
 
