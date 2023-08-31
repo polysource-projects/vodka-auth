@@ -1,6 +1,9 @@
 <template>
 	<h2>Hi, {{ mail }}! (<button class="logout-link" @click="logout">logout</button>)</h2>
-	<span>{{ website }} would like to verify your academic status.</span>
+	<span>
+		<code>{{ website }} </code>
+		would like to verify your academic status.
+	</span>
 	<button class="button red" @click="accept">Accept</button>
 	<button class="button" @click="deny">Deny</button>
 </template>

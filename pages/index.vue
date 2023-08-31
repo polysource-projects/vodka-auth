@@ -1,7 +1,7 @@
 <template>
 	<p>
 		Vodka is a secure way to prove your student status to services online, provided by EPFL Tools.
-		<a href="https://github.com/epfl-tools/vodka-auth" title="And it's open source!"
+		<a href="https://github.com/epfl-tools/vodka-auth" title="And it's open source!" target="_blank"
 			><Icon class="icon" name="mdi:github"
 		/></a>
 	</p>
