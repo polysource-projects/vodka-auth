@@ -15,7 +15,6 @@
 	height: 100vh;
 	display: flex;
 	justify-content: center;
-	align-items: center;
 }
 main.content {
 	border: #e6e6e6 1px solid;
@@ -24,8 +23,7 @@ main.content {
 	flex-direction: column;
 	justify-content: stretch;
 
-	min-width: 25rem;
-
+	width: 100%;
 	padding: 2.5rem;
 }
 
@@ -33,6 +31,15 @@ main.content > .items {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+}
+
+@media screen and (min-width: 30rem) {
+	.space {
+		align-items: center;
+	}
+	main.content {
+		width: 25rem;
+	}
 }
 </style>
 

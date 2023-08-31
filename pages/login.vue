@@ -99,7 +99,7 @@ function codeChange() {
 </script>
 <style scoped>
 p {
-	width: 15rem;
+	max-width: 15rem;
 }
 
 input {
@@ -118,6 +118,7 @@ input {
 	border: 1px solid #e6e6e6;
 	font-weight: bold;
 	padding: 0.5rem;
+	margin-bottom: 2rem;
 }
 input.code {
 	font-family: "Courier New", Courier, monospace;
