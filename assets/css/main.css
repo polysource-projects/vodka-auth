@@ -12,8 +12,6 @@ body {
 	margin: 0;
 }
 
-.items {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
+.icon {
+	margin-top: -0.15rem;
 }

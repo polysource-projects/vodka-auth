@@ -1,5 +1,5 @@
 <template>
-	<h2>hi, {{ mail }}</h2>
+	<h2>hi, {{ mail }} (<button class="logout-link" @click="logout">logout</button>)</h2>
 	<p>{{ website }} wants to get to know you ;)</p>
 	<button class="button red" @click="accept">sell my data :)</button>
 	<button class="button" @click="deny">sell plasma instead &gt;:(</button>
@@ -22,13 +22,18 @@ const website = getWebsite(redirectUri!);
 const { data } = await Vodka.getData(website);
 
 // Check if not already logged in
+const loginRedirection = "/login?redirect=" + encodeURIComponent("/authorize?redirect=" + redirectUri);
 if (!data.value) {
-	const loginRedirection = "/login?redirect=" + encodeURIComponent("/authorize?redirect=" + redirectUri);
 	navigateTo(loginRedirection);
 }
 
 // There's data !
 const mail = (data.value as any).user.email;
+
+async function logout() {
+	await Vodka.logout();
+	navigateTo(loginRedirection);
+}
 
 async function accept() {
 	const token = await Vodka.accept(website);
@@ -41,3 +46,15 @@ async function deny() {
 	navigateTo(url.href, { external: true });
 }
 </script>
+
+<style scoped>
+button.logout-link {
+	background: none;
+	border: none;
+	color: grey;
+	text-decoration: underline;
+	cursor: pointer;
+	padding: 0;
+	font-size: 1rem;
+}
+</style>

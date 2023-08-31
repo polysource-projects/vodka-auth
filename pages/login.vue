@@ -110,13 +110,8 @@ input {
 	height: 3.5rem;
 }
 
-.icon {
-	margin-top: -0.15rem;
-}
-
 .back-button {
 	border: 1px solid #e6e6e6;
-	font-weight: bold;
 	padding: 0.5rem;
 	margin-bottom: 2rem;
 }

@@ -33,6 +33,12 @@ main.content > .items {
 	height: 100%;
 }
 
+.items {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
 @media screen and (min-width: 30rem) {
 	.space {
 		align-items: center;
@@ -52,11 +58,19 @@ main.content > .items {
 	width: 100%;
 }
 
+.button:hover {
+	color: grey;
+}
+
 .button.red {
 	margin-top: 2rem;
 	border: none;
 	background-color: red;
 	color: white;
+}
+
+.button.red:hover {
+	background-color: #ff3b3b;
 }
 
 .button:disabled {

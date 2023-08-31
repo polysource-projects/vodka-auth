@@ -8,7 +8,9 @@
 		/>
 
 		<!-- Vodka logo -->
-		<span class="vodka-text">vodka</span>
+		<a href="/">
+			<span class="vodka-text">vodka</span>
+		</a>
 		<!-- <img src="https://img.cuisineaz.com/1200x675/2023/01/09/i190790-vodka-butter.jpg" alt="Vodka Logo" /> -->
 	</div>
 </template>
@@ -30,7 +32,7 @@
 	height: 1.2rem;
 }
 
-.logo-string > *.vodka-text {
+.logo-string > a *.vodka-text {
 	font-weight: 900;
 	font-size: 1.2rem;
 }
