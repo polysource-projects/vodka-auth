@@ -29,6 +29,18 @@ const phase = useState<"email" | "code">("phase", () => {
 	return "email";
 });
 
+const route = useRoute();
+const redirectUri = route.query.redirect ? decodeURIComponent(route.query.redirect as string) : undefined;
+
+async function checkLoggedIn() {
+	// Check if not already logged in
+	if (await Vodka.isLoggedIn()) {
+		navigateTo(redirectUri || "/", { external: true });
+	}
+}
+
+checkLoggedIn();
+
 function submitEmail() {
 	const valid = !!email.value;
 	if (!valid) {
@@ -40,6 +52,7 @@ function submitEmail() {
 	watch([data, pending], ([data, pending]) => {
 		if (pending || acted) return;
 		// Only act once
+
 		acted = true;
 		if (data) {
 			phase.value = "code";
@@ -55,7 +68,6 @@ function backToMail() {
 
 function codeChange() {
 	// User changed code
-	console.log("codeChange", code.value.length);
 
 	const hadLastDash = code.value[code.value.length - 1] === "-" && code.value.length === 4;
 
@@ -64,13 +76,26 @@ function codeChange() {
 	code.value = code.value.replace(/\D/g, "").replace(/(\d{3})(\d)/, "$1-$2") + (hadLastDash ? "-" : "");
 
 	const digits = code.value.split("-").join("");
-	console.log(digits);
 
 	// Send code if it reached length
-	if (code.value.length === 6 + 1) {
+	if (digits.length === 6) {
 		// User entered 6 digits
 		// Send request
+		const { data, pending } = Vodka.answer(digits);
 		// - if success : redirect
+		let acted = false;
+		watch([data, pending], ([data, pending]) => {
+			if (pending || acted) return;
+			acted = true;
+
+			if (data) {
+				// bingo!
+				navigateTo(redirectUri || "/", { external: true });
+			} else {
+				alert("Code erroné");
+				code.value = "";
+			}
+		});
 		// - if failure : remove
 		code.value = "";
 	}

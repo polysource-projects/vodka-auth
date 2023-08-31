@@ -1,6 +1,8 @@
 import { UseFetchOptions, useFetch, useRuntimeConfig } from "nuxt/app";
 
-const options: UseFetchOptions<unknown, unknown, never> = {};
+const options: UseFetchOptions<unknown, unknown, never> = {
+	credentials: "include",
+};
 
 export class Vodka {
 	static ask(email: string) {
@@ -28,6 +30,22 @@ export class Vodka {
 		const res = useFetch(config.public.API_BASE + "/data", {
 			method: "GET",
 			query: { domain: website },
+			...options,
+		});
+		return res;
+	}
+
+	static async isLoggedIn() {
+		const { data, error } = await this.getData();
+		let yes = data.value && !error.value;
+
+		return yes;
+	}
+
+	static async logout() {
+		const config = useRuntimeConfig();
+		const res = useFetch(config.public.API_BASE + "/auth/logout", {
+			method: "POST",
 			...options,
 		});
 		return res;
