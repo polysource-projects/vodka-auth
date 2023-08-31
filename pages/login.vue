@@ -32,14 +32,10 @@ const phase = useState<"email" | "code">("phase", () => {
 const route = useRoute();
 const redirectUri = route.query.redirect ? decodeURIComponent(route.query.redirect as string) : undefined;
 
-async function checkLoggedIn() {
-	// Check if not already logged in
-	if (await Vodka.isLoggedIn()) {
-		navigateTo(redirectUri || "/", { external: true });
-	}
+// Check if not already logged in
+if (await Vodka.isLoggedIn()) {
+	navigateTo(redirectUri || "/", { external: true });
 }
-
-checkLoggedIn();
 
 function submitEmail() {
 	const valid = !!email.value;

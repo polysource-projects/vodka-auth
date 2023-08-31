@@ -5,9 +5,9 @@
 <script setup lang="ts">
 import { Vodka } from "@/api";
 
-if (!(await Vodka.isLoggedIn())) {
-	navigateTo("/login");
-}
+definePageMeta({
+	middleware: ["authed"],
+});
 
 async function logout() {
 	await Vodka.logout();

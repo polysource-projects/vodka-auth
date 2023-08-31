@@ -50,4 +50,10 @@ export class Vodka {
 		});
 		return res;
 	}
+
+	static async accept(website: string) {
+		//TODO Fetch signed message from server
+		const token = "this is a very legitimate token nothing to see here";
+		return token;
+	}
 }

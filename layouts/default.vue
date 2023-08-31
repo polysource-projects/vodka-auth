@@ -46,6 +46,7 @@ main.content > .items {
 }
 
 .button.red {
+	margin-top: 2rem;
 	border: none;
 	background-color: red;
 	color: white;
