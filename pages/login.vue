@@ -11,7 +11,7 @@
 	</template>
 	<!-- Code phase -->
 	<template v-else>
-		<button class="back-button" @click="backToMail">
+		<button class="button back-button" @click="backToMail">
 			<Icon class="icon" name="material-symbols:arrow-back" />
 			{{ email }}
 		</button>
@@ -114,6 +114,7 @@ input {
 	border: 1px solid #e6e6e6;
 	padding: 0.5rem;
 	margin-bottom: 2rem;
+	height: inherit;
 }
 input.code {
 	font-family: "Courier New", Courier, monospace;
