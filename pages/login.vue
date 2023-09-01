@@ -114,7 +114,6 @@ input {
 	border: 1px solid #e6e6e6;
 	padding: 0.5rem;
 	margin-bottom: 2rem;
-	height: inherit;
 }
 input.code {
 	font-family: "Courier New", Courier, monospace;
