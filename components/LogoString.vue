@@ -10,14 +10,11 @@
 		<!-- Vodka logo -->
 		<a href="/">
 			<!-- <span class="vodka-text">vodka</span> -->
-			<VodkaLogo class="vodka-logo" :on="on" />
+			<VodkaLogo class="vodka-logo" />
 		</a>
 		<!-- <img src="https://img.cuisineaz.com/1200x675/2023/01/09/i190790-vodka-butter.jpg" alt="Vodka Logo" /> -->
 	</div>
 </template>
-<script setup lang="ts">
-const { on } = defineProps<{ on: boolean }>();
-</script>
 
 <style scoped>
 .logo-string {

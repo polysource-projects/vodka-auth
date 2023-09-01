@@ -1,5 +1,5 @@
 <template>
-	<svg :class="on && 'on'" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 189 162" fill="none">
+	<svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 189 162" fill="none">
 		<!-- White background -->
 		<rect x="6" y="6" width="177" height="150" fill="white" />
 		<!-- Vodka text -->
@@ -12,18 +12,13 @@
 	</svg>
 </template>
 
-<script setup lang="ts">
-const { on } = defineProps<{ on?: boolean }>();
-</script>
-
 <style scoped>
 svg {
 	border: solid 1px #e6e6e6;
 }
 
 svg:hover,
-svg:focus,
-svg.on {
+svg:focus {
 	border: solid 1px #00a79f;
 }
 </style>
