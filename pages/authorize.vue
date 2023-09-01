@@ -32,6 +32,7 @@ if (!data.value) {
 
 // There's data !
 const mail = (data.value as any).user.email;
+const token = (data.value as any).token;
 
 async function logout() {
 	await Vodka.logout();
@@ -39,7 +40,6 @@ async function logout() {
 }
 
 async function accept() {
-	const token = await Vodka.accept(website);
 	url.searchParams.set("vodka_token", token);
 	navigateTo(url.href, { external: true });
 }
