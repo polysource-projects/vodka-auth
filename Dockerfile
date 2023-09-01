@@ -13,6 +13,8 @@ RUN yarn install --frozen-lockfile
 # Copy the rest of the application files
 COPY . .
 
+ARG API_BASE=${API_BASE}
+
 # Build the app
 RUN yarn run build
 
