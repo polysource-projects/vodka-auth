@@ -4,7 +4,7 @@
 		<p>Log in with your EPFL academic email address.</p>
 		<form @submit.prevent="submitEmail">
 			<div class="email-thing">
-				<input type="email" placeholder="john.doe@epfl.ch" v-model="email" />
+				<input name="email" type="email" placeholder="john.doe@epfl.ch" v-model="email" />
 			</div>
 			<button class="button red main" :disabled="!email" type="submit">Continue</button>
 		</form>
@@ -16,7 +16,7 @@
 			{{ email }}
 		</button>
 		<p>We just sent you an email. Please confirm your private code.</p>
-		<input class="code" placeholder="123-456" v-model="code" @input="codeChange" />
+		<input name="code" autocomplete="off" class="code" placeholder="123-456" v-model="code" @input="codeChange" />
 	</template>
 </template>
 <script setup lang="ts">

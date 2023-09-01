@@ -1,16 +1,4 @@
 <template>
-	<p>
-		Vodka is a secure way to prove your student status to services online, provided by EPFL Tools.
-		<a href="https://github.com/epfl-tools/vodka-auth" title="And it's open source!" target="_blank"
-			><Icon class="icon" name="mdi:github"
-		/></a>
-	</p>
-	<p class="back-text">
-		Here by mistake?
-		<button class="back" @click="back">
-			<Icon class="icon" name="material-symbols:arrow-back" /> <span> Go back. </span>
-		</button>
-	</p>
 	<button v-if="loggedIn" class="button" @click="logout">
 		<Icon class="icon" name="material-symbols:logout" />
 		Log out ({{ email }})
@@ -19,15 +7,28 @@
 		<Icon class="icon" name="material-symbols:login" />
 		Log in
 	</button>
+	<p class="description">
+		Vodka is a secure authentication platform made by & for EPFL students. We will never ask for your credentials.
+		<a href="https://github.com/epfl-tools/vodka-auth" title="And it's open source!" target="_blank"
+			><Icon class="icon" name="mdi:github"
+		/></a>
+	</p>
+	<p class="back-text">
+		<button class="back" @click="back">
+			<Icon class="icon" name="material-symbols:arrow-back" />
+			<span> Here by mistake? Go back. </span>
+		</button>
+	</p>
 </template>
 
 <style scoped>
-.button {
-	margin-top: 2rem;
+.button,
+.description {
+	margin: 0;
+	margin-bottom: 1.5rem;
 }
 
 .back-text {
-	margin-top: 1rem;
 	color: grey;
 }
 .back .icon {
