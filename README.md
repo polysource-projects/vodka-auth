@@ -1,63 +1,49 @@
-# Nuxt 3 Minimal Starter
+# vodka-auth
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A privacy-respecting and open-source way to prove EPFL academic status.
 
-## Setup
+## How does it work?
 
-Make sure to install the dependencies:
+Vodka is an OAuth app that takes care of verifying `@epfl.ch` email address ownership.
 
-```bash
-# npm
-npm install
+## How do I use it in my app?
 
-# pnpm
-pnpm install
+> 💡 If you're serious about using Vodka, [let us know](mailto:contact@epfl.tools)! We can provide your website with verified status and improve your users' experience on Vodka.
 
-# yarn
-yarn install
+You can request authentication by redirecting your user to this address:
+```
+https://vodka.epfl.tools/authorize?redirect={callback}
+```
+Where `{callback}` is a URL-encoded string of your callback endpoint, for instance:
+```
+https://www.my-epfl-related-service.ch/vodka_callback
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
+Vodka takes care of verifying the student's status from there. You'll here back from them on your callback endpoint! If all went well, Vodka then redirects the user there, where `{token}` is the signed data:
+```
+{callback}?vodka_token={token}
+```
+Else, they'll land there, where `{error}` is the reason the process failed (it should be equal to `request_denied`):
+```
+{callback}?vodka_error={error}
 ```
 
-## Production
+## How to get data out of Vodka's token?
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
+The token you receive is a [JSON Web Token](https://jwt.io/). What does that mean? It means that there's no need for an additional request, as everything you need is already neatly bundled in the string you just received.
+Although it doesn't contain any particularly sensitive data, we highly recommend you remove it from your URL as soon as you've parsed it. The token's payload should look like that:
+```json
+{
+  "iat": 1693557313,
+  "sub": {
+    "email": "john.doe@epfl.ch",
+    "firstName": "John",
+    "lastName": "Doe"
+  }
+}
 ```
+Note that only the user's `email` is guaranteed to be included —the rest may be omitted, as errors may be encountered on our end as we parse `people.epfl.ch` data.
 
-Locally preview production build:
+## What next?
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Now that you've got your user's data, you may manage their session independently. As of now, Vodka does not take care of securely managing your sessions —all it does is provide a means to verify identity ad hoc.
