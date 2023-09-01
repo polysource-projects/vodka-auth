@@ -44,6 +44,11 @@ Although it doesn't contain any particularly sensitive data, we highly recommend
 ```
 Note that only the user's `email` is guaranteed to be included —the rest may be omitted, as errors may be encountered on our end as we parse `people.epfl.ch` data.
 
+**It is absolutely crucial that you fetch & cache our public key to verify every JWT you receive through this channel.** Otherwise, the data could be very easily altered. You may occasionally fetch our public key from this endpoint:
+```
+https://vodka-server.sys.epfl.tools/public-key
+```
+
 ## What next?
 
 Now that you've got your user's data, you may manage their session independently. As of now, Vodka does not take care of securely managing your sessions —all it does is provide a means to verify identity ad hoc.
