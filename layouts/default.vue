@@ -1,13 +1,17 @@
 <template>
 	<div class="space">
 		<main class="content">
-			<LogoString />
+			<LogoString :on="isRoot" />
 			<div class="items">
 				<slot />
 			</div>
 		</main>
 	</div>
 </template>
+<script setup lang="ts">
+const route = useRoute();
+const isRoot = ref(route.path === "/");
+</script>
 
 <style scoped>
 .space {

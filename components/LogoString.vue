@@ -9,11 +9,15 @@
 
 		<!-- Vodka logo -->
 		<a href="/">
-			<span class="vodka-text">vodka</span>
+			<!-- <span class="vodka-text">vodka</span> -->
+			<VodkaLogo class="vodka-logo" :on="on" />
 		</a>
 		<!-- <img src="https://img.cuisineaz.com/1200x675/2023/01/09/i190790-vodka-butter.jpg" alt="Vodka Logo" /> -->
 	</div>
 </template>
+<script setup lang="ts">
+const { on } = defineProps<{ on: boolean }>();
+</script>
 
 <style scoped>
 .logo-string {
@@ -24,16 +28,15 @@
 	margin-bottom: 3rem;
 }
 
-.logo-string > * {
-	height: 1.6rem;
-}
+/* .logo-string > * {
+	height: 2rem;
+} */
 
 .logo-string > *.epfl-logo {
-	height: 1.2rem;
+	height: 1.4rem;
 }
 
-.logo-string > a *.vodka-text {
-	font-weight: 900;
-	font-size: 1.2rem;
+.logo-string > a .vodka-logo {
+	height: 2.4rem;
 }
 </style>
