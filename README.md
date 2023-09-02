@@ -32,13 +32,17 @@ Else, they'll land there, where `{error}` is the reason the process failed (it s
 
 The token you receive is a [JSON Web Token](https://jwt.io/). What does that mean? It means that there's no need for an additional request, as everything you need is already neatly bundled in the string you just received.
 Although it doesn't contain any particularly sensitive data, we highly recommend you remove it from your URL as soon as you've parsed it. The token's payload should look like that:
-```json
+```js
 {
-  "iat": 1693557313,
-  "sub": {
+  "iat": 1693659813,
+  "sub": "john.doe@epfl.ch",
+  "target": "www.my-epfl-related-service.ch",
+  "user": {
     "email": "john.doe@epfl.ch",
-    "firstName": "John",
-    "lastName": "Doe"
+
+    // May come later
+    // "firstName": "John",
+    // "lastName": "Doe"
   }
 }
 ```
@@ -47,6 +51,25 @@ Note that only the user's `email` is guaranteed to be included —the rest may b
 **It is absolutely crucial that you fetch & cache our public key to verify every JWT you receive through this channel.** Otherwise, the data could be very easily altered. You may occasionally fetch our public key from this endpoint:
 ```
 https://vodka-server.sys.epfl.tools/public-key
+```
+
+### Here's how that process could look in JavaScript
+
+Trust-wise, you're expected to run this logic server-side.
+
+```ts
+import jwt from "jsonwebtoken";
+import axios from "axios";
+
+// What the client has parsed from query string "vodka_token"
+const vodkaToken = "···";
+
+// We advise you to cache the public key instead of fetching it regularly
+const { data: publicKey } = await axios.get("https://vodka-server.sys.epfl.tools/public-key")
+
+// Should return the object shown earlier
+// If the signature or the data are invalid, it'll throw an error
+const payload = jwt.verify(token, key);
 ```
 
 ## What next?
