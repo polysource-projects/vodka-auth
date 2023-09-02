@@ -12,9 +12,22 @@ import { Vodka } from "~/api";
 
 const route = useRoute();
 const redirectUri = route.query.redirect ? decodeURIComponent(route.query.redirect as string) : undefined;
-const url = new URL(redirectUri!);
 
-if (!redirectUri) navigateTo("/");
+if (!redirectUri) {
+	alert("Err: No redirect URI");
+	navigateTo("/");
+}
+
+try {
+	new URL(redirectUri!);
+} catch (e) {
+	if (redirectUri) {
+		alert("Err: Invalid redirect URI");
+		navigateTo("/");
+	}
+}
+
+const url = new URL(redirectUri!);
 
 function getWebsite(redirectUri: string) {
 	const url = new URL(redirectUri);
