@@ -8,11 +8,11 @@ Vodka is an OAuth app that takes care of verifying `@epfl.ch` email address owne
 
 ## How do I use it in my app?
 
-> 💡 If you're serious about using Vodka, [let us know](mailto:contact@epfl.tools)! We can provide your website with verified status and improve your users' experience on Vodka.
+> 💡 If you're serious about using Vodka, [let us know](mailto:contact@polysource.ch)! We can provide your website with verified status and improve your users' experience on Vodka.
 
 You can request authentication by redirecting your user to this address:
 ```
-https://vodka.epfl.tools/authorize?redirect={callback}
+https://vodka.polysource.ch/authorize?redirect={callback}
 ```
 Where `{callback}` is a URL-encoded string of your callback endpoint, for instance:
 ```
@@ -50,7 +50,7 @@ Note that only the user's `email` is guaranteed to be included —the rest may b
 
 **It is absolutely crucial that you fetch & cache our public key to verify every JWT you receive through this channel.** Otherwise, the data could be very easily altered. You may occasionally fetch our public key from this endpoint:
 ```
-https://vodka-server.sys.epfl.tools/public-key
+https://vodka-server.sys.polysource.ch/public-key
 ```
 
 ### Here's how that process could look in JavaScript
@@ -65,7 +65,7 @@ import axios from "axios";
 const vodkaToken = "···";
 
 // We advise you to cache the public key instead of fetching it regularly
-const { data: publicKey } = await axios.get("https://vodka-server.sys.epfl.tools/public-key")
+const { data: publicKey } = await axios.get("https://vodka-server.sys.polysource.ch/public-key")
 
 // Should return the object shown earlier
 // If the signature or the data are invalid, it'll throw an error
